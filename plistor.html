@@ -1,0 +1,58 @@
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+	<script src="jquery.ui.nestedSortable.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="plistor.css" />
+	<script src="plistor.js"></script>
+</head>
+<body class="theme-alter">
+	<div id="topmenu">
+		<div>
+			<button type="button" id="open">Open...</button>
+			<button type="button" id="import">Import...</button>
+			<!-- Center, list right side in backwards order -->
+			<button type="button" id="export">Export...</button>
+			<button type="button" id="save">Save...</button>
+			<button type="button" id="validate">Validate</button>
+			<center class="title">
+				<span class="short" style="display:none;">
+					<tz>js-</tz><ta>P</ta><tb>List</tb><tc>or</tc>
+				</span>
+				<span class="long">
+					<tz>Javascript</tz> <ta>Property</ta> <tb>List</tb> <tc>Editor</tc>
+					<te>by Tustin2121</te>
+				</span>
+			</center>
+		</div>
+	</div>
+	<div id="main">
+		<ul id="toplist"></ul>
+	</div>
+	
+	<div id="dlog-imexport" title="Import Plist">
+		<textarea id="ta-imexport">
+		</textarea>
+	</div>
+	<div id="dlog-str-edit" title="Edit String">
+		<textarea id="ta-str-edit">
+		</textarea>
+	</div>
+	<div id="dlog-data-edit" title="Edit Data">
+		<div id="tabs-data" style="height: 100%;">
+			<ul>
+				<li><a href="#dt-file">Open File</a></li>
+				<li><a href="#dt-str">Convert String</a></li>
+				<li><a href="#dt-raw">Raw Edit</a></li>
+			</ul>
+			<div id="dt-raw">
+				<textarea id="ta-data-edit"></textarea>
+			</div>
+			<div id="dt-file"></div>
+			<div id="dt-str">
+				<textarea id="ta-data-str" style="height: 90%"></textarea>
+			</div>
+	</div>
+</body>
+</html>

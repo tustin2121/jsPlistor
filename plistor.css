@@ -1,0 +1,222 @@
+html {
+	overflow-y: scroll;
+	font-size: 14px;
+}
+#main {
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 50px;
+}
+/* JQuery UI changes */
+.ui-widget { font-size: 1em; }
+.ui-spinner-input { padding: 1px 0px; }
+
+textarea {
+	width: 100%;
+	height: 100%;
+}
+
+/* Top Menu Bar */
+#topmenu {
+	position: fixed;
+	z-index: 100;
+	top: 0; left: 0;
+	height: 36px; width: 100%;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-bottom: 1px solid rgba(100, 100, 100, 0.5);
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	box-shadow: 0px 1px 16px rgba(0, 0, 0, 0.5);
+}
+#topmenu > div {
+	margin: 2px 4px 0px;
+}
+#topmenu .ui-button-text {
+	padding: 4px 6px;
+}
+#open, #import {
+	float: left;
+}
+#save, #export, #validate {
+	float: right;
+}
+
+#topmenu .long { display: inline-block; }
+#topmenu .short { display: inline-block; }
+#topmenu ta, #topmenu tb, #topmenu tc, #topmenu tz, #topmenu te {
+	display: inline;
+	font-size: 20pt;
+	font-weight: bold;
+}
+#topmenu ta {
+	color: #CF0000;
+}
+#topmenu tb {
+	color: #3475FF;
+}
+#topmenu tc {
+	color: #00C500;
+}
+#topmenu tz {
+	color: #E08700;
+}
+#topmenu te {
+	font-size: 12pt;
+}
+
+/* Now the actual list */
+#toplist {
+	padding-left: 0px;
+}
+ul, ol {
+	padding-left: 25px;
+}
+li {
+	list-style-type: none;
+}
+
+/* The Row Element */
+.row {
+	border: 1px #818181 solid;
+	border-radius: 5px;
+	padding: 4px;
+	margin-top: -1px;
+}
+.sort-placeholder {
+	border: 1px #00A72F solid;
+	border-radius: 5px;
+	margin-top: -1px;
+	background-color: #D7FFE2;
+}
+
+/* Inner Row Elements: Type Name, and Array Index */
+.row .typename, 
+.row .arrayIdx {
+	display: inline-block;
+	float: left;
+	width: 65px;
+	padding: 4px 6px;
+	text-align: right;
+}
+.row .typename:after { content: ":"; }
+
+.row .arrayIdx {
+	display: none;
+	text-align: left;
+}
+.row .arrayIdx:before { content: "["; }
+.row .arrayIdx:after { content: "]"; }
+ol > li > .row .arrayIdx { display: inline-block; }
+
+/* Inner Row Element: Content Area */
+.row .content {
+	overflow: hidden;
+}
+.row .content input {
+	width: 100%;
+	font-size: 14px;
+	min-height: 22px;
+	border: 1px solid #666666;
+	padding: 1px;
+	margin: 2px 0;
+	background-color: white;
+}
+.data-boolean .content input {
+	width: inherit;
+}
+
+/* Inner Row Element: Data Display Field */
+.row .datafield {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 4px 0;
+	color: #AAAAAA;
+	font-family: monospaced;
+}
+
+/* Inner Row Element: Edit Button */
+.row .editbtn {
+	margin-left: 6px;
+	float: right;
+}
+
+/* Inner Row Element: Key Field */
+.row .key {
+	display: none;
+	width: 100px;
+}
+ul > li > .row .key {
+	display: inline-block;
+	float: left;
+}
+
+/* Inner Row Element: Reorder Handler */
+.row .reorder {
+	float: right;
+	width: 16px;
+	margin: 0 -6px 0 0;
+	padding: 0px 8px 0px 6px;
+}
+.row .reorder > div {
+	margin: 8px 0px 8px 0px;
+	height: 4px;
+	width: 16px;
+	border-top: 2px solid #666666;
+	border-bottom: 2px solid #666666;
+}
+.row .ui-icon {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 5px 0px;
+}
+.row .ui-button-text {
+	/*padding:.2em .8em;*/
+	padding:2px 8px;
+}
+
+.dlog {
+	position: fixed;
+	top: 50px; left: 50px;
+}
+
+/* Theme: Hightlight Alternate Rows */
+
+.theme-alter {
+}
+.theme-alter li:nth-child(even) > div.row {
+	background-color: #F5FCFF;
+}
+.theme-alter div.addrow {
+	background-color: #FFFBF5 !important;
+}
+
+/* Theme: Color Code Data Types */
+.theme-data {
+}
+.theme-data div.data-string {
+	background-color: #F5FDFF; /* Pale Blue */
+}
+.theme-data div.data-number {
+	background-color: #CBFFDB; /* Green */
+}
+.theme-data div.data-boolean {
+	background-color: #FFE5BD; /* Orange */
+}
+.theme-data div.data-date {
+	background-color: #FFFCBA; /* Yellow */
+}
+.theme-data div.data-data {
+	background-color: #F5C3FF; /* Purple */
+}
+.theme-data .row .datafield {
+	background-color: #666666; /* Purple */
+}
+.theme-data div.data-array {
+	background-color: #FFD5D5; /* Red */
+}
+.theme-data div.data-dict {
+	background-color: #D0E9FF; /* Blue */
+}
+.theme-data div.addrow {
+	background-color: #FFFBF5; /* Same Yellowish as above */
+}

@@ -5,8 +5,9 @@ plistor.html
 <html>
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script src="jquery.ui.nestedSortable.js"></script>
+	<script src="jquery.ui-contextmenu.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
 	<link rel="stylesheet" type="text/css" href="plistor.css" />
 	<script src="plistor.js"></script>
@@ -32,7 +33,12 @@ plistor.html
 		</div>
 	</div>
 	<div id="main">
-		<ul id="toplist"></ul>
+		<ul id="toplist">
+		<noscript>
+			Javascript is required for this page to function.
+			Please add an exception to your Javascript blocking plugin.
+		</noscript>
+		</ul>
 	</div>
 	
 	<div id="dlog-imexport" title="Import Plist">

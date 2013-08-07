@@ -10,6 +10,9 @@ html {
 /* JQuery UI changes */
 .ui-widget { font-size: 1em; }
 .ui-spinner-input { padding: 1px 0px; }
+.ui-menu {
+	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+}
 
 textarea {
 	width: 100%;
@@ -67,9 +70,14 @@ textarea {
 /* Now the actual list */
 #toplist {
 	padding-left: 0px;
+	margin-left: 0px;
+	border-left: 0px;
 }
-ul, ol {
-	padding-left: 25px;
+#toplist ul, 
+#toplist ol {
+	padding-left: 15px;
+	margin-left: 10px;
+	border-left: 1px dotted #888888;
 }
 li {
 	list-style-type: none;
@@ -189,6 +197,10 @@ ul > li > .row .key {
 .theme-alter div.addrow {
 	background-color: #FFFBF5 !important;
 }
+.theme-alter div.delrow {
+	background-color: #FFA6A6 !important;
+	border-color: #FF2C2C;
+}
 
 /* Theme: Color Code Data Types */
 .theme-data {
@@ -219,4 +231,8 @@ ul > li > .row .key {
 }
 .theme-data div.addrow {
 	background-color: #FFFBF5; /* Same Yellowish as above */
+}
+.theme-data div.delrow {
+	background-color: #FFA6A6 !important;
+	border-color: #FF2C2C;
 }

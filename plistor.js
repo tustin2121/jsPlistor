@@ -146,16 +146,24 @@ function makeDataRow(type, opts){
 	
 	if (sub) {
 		sub.addClass("sub");
-		var arrow = $("<span>").addClass("ui-icon ui-icon-circle-triangle-s");
-		arrow.click(function(){
+		var arrow = $("<span>").addClass("ui-icon ui-icon-circle-triangle-s").addClass("arrow");
+		arrow.data('sub', sub);
+		arrow.click(function() {
 			if (sub.is(":visible")) {
-				arrow.removeClass("ui-icon-circle-triangle-s").addClass("ui-icon-circle-triangle-e");
-				sub.slideUp();
+				this.collapse();
 			} else {
-				arrow.removeClass("ui-icon-circle-triangle-e").addClass("ui-icon-circle-triangle-s");
-				sub.slideDown();
+				this.expand();
 			}
 		});
+		var arrowElement = arrow.get(0);
+		arrowElement.collapse = function(immediate, callback) {
+			arrow.removeClass("ui-icon-circle-triangle-s").addClass("ui-icon-circle-triangle-e");
+			sub.slideUp(immediate ? 0 : 400, callback);
+		};
+		arrowElement.expand = function(immediate, callback) {
+			arrow.removeClass("ui-icon-circle-triangle-e").addClass("ui-icon-circle-triangle-s");
+			sub.slideDown(immediate ? 0 : 400, callback);
+		};
 		arrow.appendTo(content);
 		
 		if (opts.prefill && $.isArray(opts.prefill.value)) { 
@@ -558,6 +566,9 @@ $(function(){
 				{title: "Delete Row", cmd: "rm", uiIcon: "ui-icon-trash"},
 				{title: "Duplicate", cmd: "cp", uiIcon: "ui-icon-copy"},
 				{title: "----"},
+				{title: "Expand All", cmd: "fold-expand", uiIcon: "ui-icon-plus"},
+				{title: "Collapse All", cmd: "fold-collapse", uiIcon: "ui-icon-minus"},
+				{title: "----"},
 				{title: "Convert To", cmd: "conv-menu-drow", uiIcon: "ui-icon-refresh", children:[
 					{title: "String", 	cmd: "conv-string"},
 					{title: "Number", 	cmd: "conv-number"},
@@ -577,7 +588,7 @@ $(function(){
 					case "conv-menu-drow":
 					case "conv-menu-coll": return false;
 					case "rm": { //delete
-						var li = $(ui.target).closest("li.datarow");
+						var li = ui.target.closest("li.datarow");
 						var delrow = makeDeleteRow();
 						delrow.data("deleted", li);
 						delrow.insertBefore(li);
@@ -587,7 +598,7 @@ $(function(){
 						}});
 					} return true;
 					case "cp": { //duplicate
-						var oldrow = $(ui.target).closest("div.datarow");
+						var oldrow = ui.target.closest("div.datarow");
 						var data = getRowData(oldrow);
 						var newrow = makeDataRow(data.type, {prefill: data});
 						oldrow = oldrow.closest("li.datarow");
@@ -596,10 +607,29 @@ $(function(){
 							$(".arrayIdx").trigger('renumber');
 						}});
 					} return true;
+					case "fold-expand": {
+						var row = ui.target.closest("div.datarow");
+						var arrow = row.find('.arrow');
+						var arrows = arrow.data('sub').find(".arrow");
+						// immediately expand all non-visible items, and then animate the visible ones
+						arrows.not(":visible").each(function() { this.expand(true); });
+						arrows.filter(":visible").each(function() { this.expand(); });
+						arrow.get(0).expand();
+					} return true;
+					case "fold-collapse": {
+						var row = ui.target.closest("div.datarow");
+						var arrow = row.find('.arrow');
+						var arrows = arrow.data('sub').find(".arrow");
+						// collapse current content
+						arrow.get(0).collapse(false, function() {
+							// then when anim is complete collapse everything inside immediately
+							arrows.each(function() { this.collapse(true); });
+						});
+					} return true;
 				}
 				var mode = /^conv\-(.*)/.exec(ui.cmd);
 				if (mode && mode[1]) { //conversion!
-					var oldrow = $(ui.target).closest("div.datarow");
+					var oldrow = ui.target.closest("div.datarow");
 					var data = getRowData(oldrow);
 					if (mode[1] == data.type) return true; //if they are the same data type, do nothing
 					oldrow = oldrow.closest("li.datarow");
@@ -615,7 +645,7 @@ $(function(){
 				}
 			},
 			beforeOpen : function(e, ui){
-				var row = $(ui.target).closest("div.datarow");
+				var row = ui.target.closest("div.datarow");
 				if (row.is(".data-array,.data-dict")){
 					$("#toplist").contextmenu("showEntry", "conv-menu-coll", true);
 					$("#toplist").contextmenu("showEntry", "conv-menu-drow", false);

@@ -7,6 +7,7 @@ html {
 	margin-right: 20px;
 	margin-top: 50px;
 }
+
 /* JQuery UI changes */
 .ui-widget { font-size: 1em; }
 .ui-spinner-input { padding: 1px 0px; }
@@ -73,7 +74,7 @@ textarea {
 	margin-left: 0px;
 	border-left: 0px;
 }
-#toplist ul, 
+#toplist ul,
 #toplist ol {
 	padding-left: 15px;
 	margin-left: 10px;
@@ -98,9 +99,8 @@ li {
 }
 
 /* Inner Row Elements: Type Name, and Array Index */
-.row .typename, 
+.row .typename,
 .row .arrayIdx {
-	display: inline-block;
 	float: left;
 	width: 65px;
 	padding: 4px 6px;
@@ -154,7 +154,6 @@ ol > li > .row .arrayIdx { display: inline-block; }
 	width: 100px;
 }
 ul > li > .row .key {
-	display: inline-block;
 	float: left;
 }
 
@@ -178,7 +177,6 @@ ul > li > .row .key {
 	margin: 5px 0px;
 }
 .row .ui-button-text {
-	/*padding:.2em .8em;*/
 	padding:2px 8px;
 }
 
@@ -189,8 +187,6 @@ ul > li > .row .key {
 
 /* Theme: Hightlight Alternate Rows */
 
-.theme-alter {
-}
 .theme-alter li:nth-child(even) > div.row {
 	background-color: #F5FCFF;
 }
@@ -203,8 +199,6 @@ ul > li > .row .key {
 }
 
 /* Theme: Color Code Data Types */
-.theme-data {
-}
 .theme-data div.data-string {
 	background-color: #F5FDFF; /* Pale Blue */
 }
